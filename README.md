@@ -15,7 +15,7 @@ YANDEX_CLOUD_API_KEY="<YOUR API KEY>"
 EMBEDDINGS_API_BASE_URL="http://localhost:8001"
 ```
 
-```shell
+```bash
 docker-compose up -d
 ```
 
