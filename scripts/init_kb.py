@@ -12,6 +12,7 @@ from src import rag
 from src.settings import BASE_DIR, CHROMA_PATH
 
 DATA_DIR = BASE_DIR / "data"
+INDEX_NAME = "knowledge-index"
 
 logger = logging.getLogger(__name__)
 
@@ -25,8 +26,8 @@ def convert_document_to_md(file_path) -> str:
 
 
 async def main() -> None:
-    if await anyio.Path(CHROMA_PATH).exists():
-        return
+    """if await anyio.Path(CHROMA_PATH).exists():
+        return"""
     files = [
         file_path async for file_path in anyio.Path(DATA_DIR).rglob("*")
         if await file_path.is_file()
@@ -42,7 +43,8 @@ async def main() -> None:
             md_text = await file_path.read_text(encoding="utf-8")
         resolved_path = await file_path.resolve()
         await rag.index_document(
-            md_text,
+            index_name=INDEX_NAME,
+            text=md_text,
             metadata={
                 "category": "Приёмная компания 2026",
                 "source": file_path.name,

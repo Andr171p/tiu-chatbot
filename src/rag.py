@@ -27,7 +27,7 @@ splitter = RecursiveCharacterTextSplitter(
     wait=wait_exponential(multiplier=1, min=2, max=10),
     retry=retry_if_exception_type((aiohttp.ClientError, asyncio.TimeoutError))
 )
-async def get_embeddings(texts: list[str], batch_size: int = 20) -> list[list[float]]:
+async def get_embeddings(texts: list[str], batch_size: int = 10) -> list[list[float]]:
     """Векторизация текста.
 
     :param texts: Тексты, которые нужно векторизовать.

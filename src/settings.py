@@ -25,7 +25,7 @@ class Settings(BaseSettings):
     yandex_cloud_folder_id: str = "<FOLDER_ID>"
     yandex_cloud_api_key: str = "<API_KEY>"
     yandex_cloud_base_url: str = "https://llm.api.cloud.yandex.net/v1"
-    embeddings_base_url: str = "http://localhost:8001"
+    embeddings_base_url: str = "http://localhost:8000"
 
     @property
     def gemma_3_27b_it(self) -> str:
