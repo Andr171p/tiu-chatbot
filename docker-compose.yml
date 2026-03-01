@@ -3,3 +3,11 @@ services:
     image: ghcr.io/browserless/chromium
     ports:
       - "3000:3000"
+
+  app:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "8002:8000"
+    depends_on:
+      - browserless

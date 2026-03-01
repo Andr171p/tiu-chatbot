@@ -6,6 +6,8 @@ from bs4 import BeautifulSoup
 from playwright.async_api import Browser, BrowserContext, Page, async_playwright
 from playwright.async_api import TimeoutError as PlaywrightTimeoutError
 
+from .settings import settings
+
 logger = logging.getLogger(__name__)
 
 FINGERPRINT_SPOOFING_SCRIPT = """
@@ -225,11 +227,11 @@ def extract_markdown_text(soup: BeautifulSoup) -> str:
     return "\n".join([html_to_markdown.convert(str(element)) for element in elements])
 
 
-async def get_page_text(url: str, headless: bool = False) -> str:
+async def get_page_text(url: str) -> str:
     """Получает текст со страницы в формате Markdown"""
 
     async with async_playwright() as playwright:
-        browser = await playwright.chromium.launch(headless=headless)
+        browser = await playwright.chromium.connect(ws_endpoint=settings.chromium_ws_endpoint)
         page = await get_current_page(browser)
         logger.info("Opening `%s` page ...", url)
         await page.goto(url)
