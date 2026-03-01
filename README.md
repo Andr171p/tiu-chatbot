@@ -23,6 +23,7 @@ docker-compose up -d
 
 ```markdown
 [User] Я планируй поступать на архитектуру, хватит ли мне времени чтобы подготовится к экзаменам
+
 INFO:src.agent:Calling chatbot for query - 'Я планируй поступать на архитектуру, хватит ли мне времени чтобы подготовится к экзаменам ...'
 INFO:httpx:HTTP Request: POST https://llm.api.cloud.yandex.net/v1/chat/completions "HTTP/1.1 200 OK"
 INFO:src.rag:Retrieving for query: 'вступительные испытания направление подготовки арх...'
